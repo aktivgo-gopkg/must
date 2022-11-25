@@ -2,10 +2,7 @@ package unexpected
 
 // Must call panic if err not nil else return result
 func Must[T any](result T, err error) T {
-	if err != nil {
-		panic(err)
-	}
-
+	Panic(err)
 	return result
 }
 
