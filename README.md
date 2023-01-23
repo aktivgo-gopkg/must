@@ -5,13 +5,13 @@ package main
 
 import (
 	"errors"
-	"github.com/aktivgo-gopkg/unexpected"
+	"github.com/aktivgo-gopkg/must"
 	"log"
 )
 
-func compare(a, b int) error {
-	if a < b {
-		return errors.New("a less then b")
+func checkEqual(a, b int) error {
+	if a != b {
+		return errors.New("a not equal b")
 	}
 
 	return nil
@@ -19,20 +19,22 @@ func compare(a, b int) error {
 
 func sub(a, b int) (int, error) {
 	if a < b {
-		return 0, errors.New("a less then b")
+		return 0, errors.New("a less than b")
 	}
 
-	return a - b, nil
+	return a / b, nil
 }
 
 func main() {
-	unexpected.Panic(compare(1, 2)) // panic
+	must.Do1(checkEqual(1, 2)) // panic
 
-	unexpected.Panic(compare(2, 1)) // ok
+	must.Do1(checkEqual(2, 1)) // ok
 
-	_ = unexpected.Must(sub(1, 2)) // panic
+	_ = must.Do(sub(1, 2)) // or Do2, panic
 
-	result := unexpected.Must(sub(2, 1)) // ok
-	log.Println(result)                  // 1
+	result := must.Do(sub(2, 1)) // or Do2, ok
+	log.Println(result)          // 1
+
+	// etc. with Do3 and Do4
 }
 ```

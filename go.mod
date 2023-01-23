@@ -1,3 +1,3 @@
-module github.com/aktivgo-gopkg/unexpected
+module github.com/aktivgo-gopkg/must
 
 go 1.19
