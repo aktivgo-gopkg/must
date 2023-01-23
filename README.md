@@ -22,7 +22,7 @@ func sub(a, b int) (int, error) {
 		return 0, errors.New("a less than b")
 	}
 
-	return a / b, nil
+	return a - b, nil
 }
 
 func main() {
