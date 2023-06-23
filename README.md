@@ -26,15 +26,10 @@ func sub(a, b int) (int, error) {
 }
 
 func main() {
-	must.Do1(checkEqual(1, 2)) // panic
+	must.All(checkEqual(1, 1)) // ok
+	must.All(checkEqual(1, 2)) // panic
 
-	must.Do1(checkEqual(2, 1)) // ok
-
-	_ = must.Do(sub(1, 2)) // or Do2, panic
-
-	result := must.Do(sub(2, 1)) // or Do2, ok
-	log.Println(result)          // 1
-
-	// etc. with Do3 and Do4
+	log.Println(must.Do(sub(2, 1))) // ok, 1
+	log.Println(must.Do(sub(1, 2))) // panic
 }
 ```
